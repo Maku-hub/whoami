@@ -9,9 +9,9 @@ OS: Alpine Linux
     * `MariaDB`
 
 2. Place files:
-    * Copy the `nginx` directory to `/etc/nginx`
-    * Copy the `html` directory to `/var/www/html`
-    * Copy the `flashapp` file to `/etc/init.d/flaskapp`
+    * Copy the `source/nginx` directory to `/etc/nginx`
+    * Copy the `source/html` directory to `/var/www/html`
+    * Copy the `source/flashapp` file to `/etc/init.d/flaskapp`
 
 3. Initialize the database (MariaDB):
 ```bash
@@ -59,7 +59,7 @@ CREATE TABLE user_data (
 DESCRIBE user_data;
 ```
 
-4. Configure Flask database connection. In `html/flask/app.py`, edit the `db_config` object with your credentials.
+4. Configure Flask database connection. In `/var/www/html/flask/app.py`, edit the `db_config` object with your credentials.
 
 5. Set up and run Flask in a virtual environment
 ```bash
@@ -85,7 +85,7 @@ sudo rc-service flaskapp status
 ```
 
 7. Add additional files:
-    * Add `html/files/verification` (for https://moje.cert.pl/ verification)
-    * Add CV file at `html/files/pub_CV_Mateusz_Maczewski.pdf` (or update `html/index.html` with your file name)
+    * Add `/var/www/html/files/verification` (for https://moje.cert.pl/ verification)
+    * Add CV file at `/var/www/html/files/pub_CV_Mateusz_Maczewski.pdf` (or update `/var/www/html/index.html` with your file name)
 
 8. Restart `nginx`.
