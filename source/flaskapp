@@ -1,0 +1,38 @@
+#!/sbin/openrc-run
+
+description="Flask application served by Gunicorn"
+
+command_user="nginx"
+directory="/var/www/html/flask"
+command="/var/www/html/flask/web-venv/bin/gunicorn"
+command_args="-w 4 -b 127.0.0.1:5000 app:app"
+
+pidfile="/run/flaskapp.pid"
+logfile="/var/log/flaskapp.log"
+
+depend() {
+    need net
+    use nginx mysql
+}
+
+start_pre() {
+    checkpath --directory --owner ${command_user}:${command_user} /run
+    checkpath --file --owner ${command_user}:${command_user} --mode 0644 ${logfile}
+}
+
+start() {
+    ebegin "Starting Flask (Gunicorn) app"
+    start-stop-daemon --start \
+        --background \
+        --make-pidfile \
+        --pidfile ${pidfile} \
+        --chdir ${directory} \
+        --exec ${command} -- ${command_args} >> ${logfile} 2>&1
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping Flask (Gunicorn) app"
+    start-stop-daemon --stop --pidfile ${pidfile}
+    eend $?
+}

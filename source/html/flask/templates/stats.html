@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats</title>
+
+<style>  
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #105469;
+  font-family: 'Open Sans', sans-serif;
+}
+h1 {
+  padding-left: 5%;
+  color: #FFFFFF;
+  padding: 12px;
+  margin-left: 5.8%;
+}
+#myInput {
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 50%;
+  font-size: 16px;
+  padding: 6px 10px 6px 20px;
+  border: 1px solid #000000;
+  margin-left: 5.8%;
+}
+table {
+  background: #012B39;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #E2B842;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #fff;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+.disabled td {
+  color: #4F5F64;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #014055;
+}
+</style>  
+
+</head>
+<body>
+
+    <h1>Visitor List</h2>
+
+    <input type="text" id="myInput" onkeyup="searchIP()" placeholder="Search for IPv4 address..." title="Type in a IPv4 address">
+
+    <div class="container">
+    {% if rows %}
+        <table id="usersTable">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ID</th>
+                    <th onclick="sortTable(1)">User Agent</th>
+                    <th onclick="sortTable(2)">App Name</th>
+                    <th onclick="sortTable(3)">Platform</th>
+                    <th onclick="sortTable(4)">Vendor</th>
+                    <th onclick="sortTable(5)">Language</th>
+                    <th onclick="sortTable(6)">Online</th>
+                    <th onclick="sortTable(7)">Cookies Enabled</th>
+                    <th onclick="sortTable(8)">Screen Size</th>
+                    <th onclick="sortTable(9)">Color Depth</th>
+                    <th onclick="sortTable(10)">Pixel Depth</th>
+                    <th onclick="sortTable(11)">Inner Size</th>
+                    <th onclick="sortTable(12)">Outer Size</th>
+                    <th onclick="sortTable(13)">Timezone Offset</th>
+                    <th onclick="sortTable(14)">Current Time</th>
+                    <th onclick="sortTable(15)">Touch Support</th>
+                    <th onclick="sortTable(16)">Max Touch Points</th>
+                    <th onclick="sortTable(17)">Device Memory</th>
+                    <th onclick="sortTable(18)">Public IP</th>
+                    <th onclick="sortTable(19)">Supplier</th>
+                    <th onclick="sortTable(20)">Country</th>
+                    <th onclick="sortTable(21)">Region</th>
+                    <th onclick="sortTable(22)">Coordinates</th>
+                    <th onclick="sortTable(23)">Timezone</th>
+                    <th onclick="sortTable(24)">Connection Type</th>
+                    <th onclick="sortTable(25)">Downlink</th>
+                    <th onclick="sortTable(26)">RTT</th>
+                    <th onclick="sortTable(27)">Battery Level</th>
+                    <th onclick="sortTable(28)">Charging</th>
+                    <!-- Add more columns as needed -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row.id }}</td>
+                    <td>{{ row.user_agent }}</td>
+                    <td>{{ row.app_name }}</td>
+                    <td>{{ row.platform }}</td>
+                    <td>{{ row.vendor }}</td>
+                    <td>{{ row.language }}</td>
+                    <td>{{ row.online }}</td>
+                    <td>{{ row.cookies_enabled }}</td>
+                    <td>{{ row.screen_width }} x {{ row.screen_height }}</td>
+                    <td>{{ row.color_depth }}</td>
+                    <td>{{ row.pixel_depth }}</td>
+                    <td>{{ row.inner_width }} x {{ row.inner_height }}</td>
+                    <td>{{ row.outer_width }} x {{ row.outer_height }}</td>
+                    <td>{{ row.timezone_offset }}</td>
+                    <td>{{ row.current_time }}</td>
+                    <td>{{ row.touch_support }}</td>
+                    <td>{{ row.max_touch_points }}</td>
+                    <td>{{ row.device_memory }}</td>
+                    <td>{{ row.public_ip }}</td>
+                    <td>{{ row.supplier }}</td>
+                    <td>{{ row.country }}</td>
+                    <td>{{ row.region }}</td>
+                    <td>{{ row.latitude }} x {{ row.longitude }}</td>
+                    <td>{{ row.timezone }}</td>
+                    <td>{{ row.connection_type }}</td>
+                    <td>{{ row.downlink }}</td>
+                    <td>{{ row.rtt }}</td>
+                    <td>{{ row.battery_level }}</td>
+                    <td>{{ row.charging }}</td>
+                    <!-- Add more columns as needed -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+
+    <script>
+    function searchIP() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("usersTable");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[18];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+
+function sortTable(n) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById("usersTable");
+  switching = true;
+  dir = "asc"; 
+  while (switching) {
+    switching = false;
+    rows = table.rows;
+    for (i = 1; i < (rows.length - 1); i++) {
+      shouldSwitch = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      const xContent = isNaN(x.innerHTML) ? x.innerHTML.toLowerCase() : parseFloat(x.innerHTML);
+      const yContent = isNaN(y.innerHTML) ? y.innerHTML.toLowerCase() : parseFloat(y.innerHTML);
+      if (dir == "asc") {
+        if (xContent > yContent) {
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (xContent < yContent) {
+          shouldSwitch = true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+      switchcount ++;      
+    } else {
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+    </script>
+
+</body>
+</html>

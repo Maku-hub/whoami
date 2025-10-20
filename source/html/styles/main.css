@@ -1,0 +1,93 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: #111111;
+}
+
+#hiddenMessage {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1000;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+#hiddenMessage button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#hiddenMessage button:hover {
+  background: #3700b3;
+}
+
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111111;
+  z-index: 1000;
+  transition: opacity 1s ease-in-out;
+}
+
+#main {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#logo {
+  width: 200px;
+  animation: fadeIn 1s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  0%, 100% {
+      opacity: 0.25;
+  }
+  50% {
+      opacity: 1;
+  }
+}
+
+.icons-social a, footer {
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
+}
+
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+footer {
+  position: relative;
+  margin-top: -20px;
+}
