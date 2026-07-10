@@ -1,3 +1,22 @@
+# Editors / IDE
 .idea/
 .vscode/
+
+# Python
 __pycache__/
+*.py[cod]
+web-venv/
+venv/
+.venv/
+
+# Environment / secrets — never commit real credentials
+.env
+*.env
+conf.d-flaskapp
+
+# Deployment-specific & personal assets (added on the server, not in VCS)
+html/files/pub_CV_*.pdf
+html/files/verification
+
+# Nginx auth file (if ever placed in-tree)
+.htpasswd

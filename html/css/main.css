@@ -7,6 +7,8 @@ html, body {
   background-color: #111111;
 }
 
+
+
 #hiddenMessage {
   display: none;
   position: fixed;

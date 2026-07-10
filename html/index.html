@@ -7,21 +7,21 @@
 
     <title>Mateusz 'Maku' Mączewski</title>
 
-    <link rel="icon" href="images/logo.png" type="image/png" />
+    <link rel="icon" href="/icons/logo.png" type="image/png" />
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v6.7.2/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/styles.css">
-    <link rel="stylesheet" href="styles/themes/dark-white.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes/dark-white.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div id="background">
         <div id="particles-js"></div>
     </div>
     <div id="loader">
-        <img src="images/logo.png" alt="Loading Logo" id="logo">
+        <img src="/icons/logo.png" alt="Loading Logo" id="logo">
     </div>
     <main id="main">
         <div class="intro">Connecting people, systems, and ideas into working solutions.</div>
@@ -47,6 +47,12 @@
                 <i class="fa-brands fa-x-twitter" aria-hidden="true" title="X"></i>
                 <span class="sr-only">X</span>
             </a>
+            <!--
+            <a target="_blank" href="https://www.facebook.com/mateusz.maczewski.7">
+                <i class="fa-brands fa-facebook" aria-hidden="true" title="Facebook"></i>
+                <span class="sr-only">Facebook</span>
+            </a>
+            -->
             <a target="_blank" href="https://discord.com/users/maku96/">
                 <i class="fab fa-discord" aria-hidden="true" title="Discord"></i>
                 <span class="sr-only">Discord</span>
@@ -82,23 +88,23 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const loader = document.getElementById("loader");
-        const main = document.getElementById("main");
+document.addEventListener("DOMContentLoaded", () => {
+  const loader = document.getElementById("loader");
+  const main = document.getElementById("main");
 
-        // Simulate a loading delay for demonstration
-        setTimeout(() => {
-            // Fade out the loader
-            loader.style.opacity = "0";
+  // Simulate a loading delay for demonstration
+  setTimeout(() => {
+    // Fade out the loader
+    loader.style.opacity = "0";
 
-            // Wait for the fade-out to complete before hiding loader completely
-            setTimeout(() => {
-            loader.style.display = "none";
-            // Fade in the main content
-            main.style.opacity = "1";
-            }, 1000); // Match the CSS transition duration (1s)
-        }, 2000); // Adjust delay as needed (2 seconds in this case)
-        });
+    // Wait for the fade-out to complete before hiding loader completely
+    setTimeout(() => {
+      loader.style.display = "none";
+      // Fade in the main content
+      main.style.opacity = "1";
+    }, 1000); // Match the CSS transition duration (1s)
+  }, 2000); // Adjust delay as needed (2 seconds in this case)
+});
     </script>
 
     <script>

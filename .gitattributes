@@ -1,0 +1,17 @@
+# Normalize all text files to LF in the repo and working tree.
+# Prevents Windows CRLF from breaking shell/init scripts on Linux
+# (a CRLF shebang makes the kernel fail with "No such file or directory").
+* text=auto eol=lf
+
+# The OpenRC init script and shell scripts MUST be LF.
+flaskapp        text eol=lf
+*.sh            text eol=lf
+*.conf          text eol=lf
+*.py            text eol=lf
+
+# Binary assets — never touched.
+*.png  binary
+*.pdf  binary
+*.ico  binary
+*.jpg  binary
+*.jpeg binary
